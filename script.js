@@ -24,7 +24,7 @@ function mostrarMetar(info) {
     let contenedor = document.getElementById("container")
     let icaoInput = document.getElementById("buscador")
     let icaoCode = icaoInput.value;
-    var cloud = info.clouds.forEach(function (nube) {
+    let cloud = Object.values(info).clouds.forEach(function(nube) {
        nube.repr
     });
     contenedor.innerHTML = `
@@ -35,6 +35,7 @@ function mostrarMetar(info) {
     </div>
     `
     //${info.}&nbsp                                                                          ${info.}&nbsp                                                                                               ${info.}&nbsp                                      ${info.}&nbsp 
+
 }
 
 document.addEventListener("DOMContentLoaded", () => {
