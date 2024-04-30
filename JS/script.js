@@ -38,6 +38,12 @@ function mostrarMetar(info) {
         `
     }
 
+    info.wind_variable_direction.forEach(function (variable){
+        html += `
+        ${variable.repr}
+        `
+    })
+       
 
     if (visibility.length < 4) {
         html += `
