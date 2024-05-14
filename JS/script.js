@@ -20,57 +20,80 @@ function mostrarMetar(info) {
     const contenedor = document.getElementById("container")
     let icaoInput = document.getElementById("buscador")
     let icaoCode = icaoInput.value;
-    let visibility = info.visibility.repr 
-    var html = `
-    <div>
-    <p>${info.raw}</p>
-    <br>
-    <p>${icaoCode.toUpperCase()}&nbsp${info.time.repr}
-    `
+    let visibility = info.visibility.repr
+    let intro = `<div>${icaoCode.toUpperCase()} &nbsp ${info.time.repr}</div>`;
+    let outro = `<div>${info.temperature.repr}/${info.dewpoint.repr}&nbsp${info.altimeter.repr}&nbsp${info.remarks}</div>`;
+
+    contenedor.innerHTML = intro;
 
     if (info.wind_gust) {
-        html += `
-        ${info.wind_direction.repr}${info.wind_speed.repr}G${info.wind_gust.repr}KT
-        `
+        contenedor.innerHTML +=
+            `<div>${info.wind_direction.repr}${info.wind_speed.repr}G${info.wind_gust.repr} KT</div>`
+
     } else {
-        html += `
-        ${info.wind_direction.repr}${info.wind_speed.repr}KT
-        `
+        contenedor.innerHTML +=
+            `<div>${info.wind_direction.repr}${info.wind_speed.repr} KT</div>`
+
     }
 
-    info.wind_variable_direction.forEach(function (variable){
-        html += `
-        ${variable.repr}
-        `
+    info.wind_variable_direction.forEach(function (variable) {
+        contenedor.innerHTML +=
+            `<div> ${variable.repr}</div>`
+
     })
-       
+
 
     if (visibility.length < 4) {
-        html += `
-        ${info.visibility.repr}SM
-        `
+        contenedor.innerHTML +=
+            `<div> ${info.visibility.repr} SM</div>`
+
     } else {
-        html += `
-        ${info.visibility.repr}
-        `
+        contenedor.innerHTML +=
+            `<div> ${info.visibility.repr}</div>`
+
     }
 
     info.wx_codes.forEach(function (weather) {
-        html += `
-        ${weather.repr}
-        `
+        contenedor.innerHTML +=
+            `<div>${weather.repr}</div>`
+
     });
     info.clouds.forEach(function (nube) {
-        html += `
-        ${nube.repr}
-        `
+        let nubeAlt = nube.altitude
+        if (nubeAlt.toString().length === 1) {
+            contenedor.innerHTML +=
+                `<div class="modal-body"><div class="fs-5"> <button class="btn btn-secondary" data-bs-toggle="popover" title="Scattered" data-bs-content="si hay ntre 3 y 4 octas de nubes en el cielo se utiliza SCT, significa nubes dispersas">${nube.type}</button></div></div><div> 00${nube.altitude}</div>`
+        } else if (nubeAlt.toString().length === 2) {
+            contenedor.innerHTML +=
+                `<div class="modal-body"><div class="fs-5"> <button class="btn btn-secondary" data-bs-toggle="popover" title="Scattered" data-bs-content="si hay ntre 3 y 4 octas de nubes en el cielo se utiliza SCT, significa nubes dispersas">${nube.type}</button></div></div><div> 0${nube.altitude}</div>`
+        } else {
+            contenedor.innerHTML +=
+                `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dataModal">
+                ${nube.type}
+                </button>
+                <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden= "true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">    
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal-title">${nube.type}</h5> 
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="fs-5">
+                                    <p>Scattered: Si hay entre 3 y 4 octas de nubes en el cielo se utiliza SCT, significa nubes dispersas</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                ${nube.altitude}
+                </div>`
+        }
     });
-    html += `
-    ${info.temperature.repr}/${info.dewpoint.repr}&nbsp${info.altimeter.repr}&nbsp${info.remarks}</p>
-    </div>
-    `
-    // ${info.}&nbsp
-    contenedor.innerHTML = html
+
+    contenedor.innerHTML += outro
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -89,3 +112,34 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 })
+
+/* 
+--------------------       Modal para abrir secciones del metar       --------------------
+
+<div class="modal-body">
+  <h2 class="fs-5">Popover in a modal</h2>
+  <p>This <button class="btn btn-secondary" data-bs-toggle="popover" title="Popover title" data-bs-content="Popover body content is set in this attribute.">button</button> triggers a popover on click.</p>
+  <hr>
+  <h2 class="fs-5">Tooltips in a modal</h2>
+  <p><a href="#" data-bs-toggle="tooltip" title="Tooltip">This link</a> and <a href="#" data-bs-toggle="tooltip" title="Tooltip">that link</a> have tooltips on hover.</p>
+</div>
+
+------------------------------------------------------------------------------------------
+
+hover a cada parte
+
+Centrar el metar bien grande en el medio
+
+dividirlo en cajas
+
+usar stringify para leer repr como la del tiempo
+*/
+
+/* 
+
+                    ottawa: CYOW
+                    muscat: OOMS
+                    carrasco: SUMU
+                    kennedy: KJFK
+
+*/
