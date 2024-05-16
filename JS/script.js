@@ -28,44 +28,268 @@ function mostrarMetar(info) {
 
     if (info.wind_gust) {
         contenedor.innerHTML +=
-            `<div>${info.wind_direction.repr}${info.wind_speed.repr}G${info.wind_gust.repr} KT</div>`
+            `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dataModal">
+            ${info.wind_direction.repr}
+            </button>
+            <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden= "true">
+                <div class="modal-dialog">
+                    <div class="modal-content">    
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-title">${info.wind_direction.repr}</h5> 
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="fs-5">
+                                <p>Scattered: Si hay entre 3 y 4 octas de nubes en el cielo se utiliza SCT, significa nubes dispersas</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dataModal">
+            ${info.wind_speed.repr}
+            </button>
+            <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden= "true">
+                <div class="modal-dialog">
+                    <div class="modal-content">    
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-title">${info.wind_speed.repr}</h5> 
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="fs-5">
+                                <p>Scattered: Si hay entre 3 y 4 octas de nubes en el cielo se utiliza SCT, significa nubes dispersas</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dataModal">
+            G
+            </button>
+            <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden= "true">
+                <div class="modal-dialog">
+                    <div class="modal-content">    
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-title">G</h5> 
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="fs-5">
+                                <p>Scattered: Si hay entre 3 y 4 octas de nubes en el cielo se utiliza SCT, significa nubes dispersas</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dataModal">
+            ${info.wind_gust.repr}
+            </button>
+            <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden= "true">
+                <div class="modal-dialog">
+                    <div class="modal-content">    
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-title">${info.wind_gust.repr}</h5> 
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="fs-5">
+                                <p>Scattered: Si hay entre 3 y 4 octas de nubes en el cielo se utiliza SCT, significa nubes dispersas</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`
 
     } else {
         contenedor.innerHTML +=
-            `<div>${info.wind_direction.repr}${info.wind_speed.repr} KT</div>`
+            `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dataModal">
+            ${info.wind_direction.repr} 
+            </button>
+            <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden= "true">
+                <div class="modal-dialog">
+                    <div class="modal-content">    
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-title">${info.wind_direction.repr} </h5> 
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="fs-5">
+                                <p>Scattered: Si hay entre 3 y 4 octas de nubes en el cielo se utiliza SCT, significa nubes dispersas</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dataModal">
+            ${info.wind_speed.repr} KT
+            </button>
+            <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden= "true">
+                <div class="modal-dialog">
+                    <div class="modal-content">    
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-title">${info.wind_speed.repr} KT</h5> 
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="fs-5">
+                                <p>Scattered: Si hay entre 3 y 4 octas de nubes en el cielo se utiliza SCT, significa nubes dispersas</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`
 
     }
-
     info.wind_variable_direction.forEach(function (variable) {
         contenedor.innerHTML +=
-            `<div> ${variable.repr}</div>`
+            `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dataModal">
+            ${variable.repr}
+            </button>
+            <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden= "true">
+                <div class="modal-dialog">
+                    <div class="modal-content">    
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-title">${variable.repr}</h5> 
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="fs-5">
+                                <p>Scattered: Si hay entre 3 y 4 octas de nubes en el cielo se utiliza SCT, significa nubes dispersas</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`
 
     })
 
-
     if (visibility.length < 4) {
         contenedor.innerHTML +=
-            `<div> ${info.visibility.repr} SM</div>`
+            `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dataModal">
+            ${info.visibility.repr} SM
+            </button>
+            <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden= "true">
+                <div class="modal-dialog">
+                    <div class="modal-content">    
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-title">${info.visibility.repr} SM</h5> 
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="fs-5">
+                                <p>Scattered: Si hay entre 3 y 4 octas de nubes en el cielo se utiliza SCT, significa nubes dispersas</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`
 
     } else {
         contenedor.innerHTML +=
-            `<div> ${info.visibility.repr}</div>`
+        `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dataModal">
+        ${info.visibility.repr}
+        </button>
+        <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden= "true">
+            <div class="modal-dialog">
+                <div class="modal-content">    
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title">${info.visibility.repr}</h5> 
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="fs-5">
+                            <p>Scattered: Si hay entre 3 y 4 octas de nubes en el cielo se utiliza SCT, significa nubes dispersas</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`
 
     }
 
     info.wx_codes.forEach(function (weather) {
         contenedor.innerHTML +=
-            `<div>${weather.repr}</div>`
+            `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dataModal">
+            ${weather.repr}
+            </button>
+            <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden= "true">
+                <div class="modal-dialog">
+                    <div class="modal-content">    
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-title">${weather.repr}</h5> 
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="fs-5">
+                                <p>Scattered: Si hay entre 3 y 4 octas de nubes en el cielo se utiliza SCT, significa nubes dispersas</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`
 
     });
     info.clouds.forEach(function (nube) {
         let nubeAlt = nube.altitude
         if (nubeAlt.toString().length === 1) {
             contenedor.innerHTML +=
-                `<div class="modal-body"><div class="fs-5"> <button class="btn btn-secondary" data-bs-toggle="popover" title="Scattered" data-bs-content="si hay ntre 3 y 4 octas de nubes en el cielo se utiliza SCT, significa nubes dispersas">${nube.type}</button></div></div><div> 00${nube.altitude}</div>`
+                `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dataModal">
+                ${nube.type}
+                </button>
+                <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden= "true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">    
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal-title">${nube.type}</h5> 
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="fs-5">
+                                    <p>Scattered: Si hay entre 3 y 4 octas de nubes en el cielo se utiliza SCT, significa nubes dispersas</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                00${nube.altitude}
+                </div>`
         } else if (nubeAlt.toString().length === 2) {
             contenedor.innerHTML +=
-                `<div class="modal-body"><div class="fs-5"> <button class="btn btn-secondary" data-bs-toggle="popover" title="Scattered" data-bs-content="si hay ntre 3 y 4 octas de nubes en el cielo se utiliza SCT, significa nubes dispersas">${nube.type}</button></div></div><div> 0${nube.altitude}</div>`
+                `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dataModal">
+                ${nube.type}
+                </button>
+                <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden= "true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">    
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal-title">${nube.type}</h5> 
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="fs-5">
+                                    <p>Scattered: Si hay entre 3 y 4 octas de nubes en el cielo se utiliza SCT, significa nubes dispersas</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                0${nube.altitude}
+                </div>`
         } else {
             contenedor.innerHTML +=
                 `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dataModal">
