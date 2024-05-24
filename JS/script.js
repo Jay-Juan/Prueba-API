@@ -1,5 +1,4 @@
 const API = 'https://avwx.rest/api/metar/';
-// a
 
 async function traerMetar(funcion) {
     let icaoInput = document.getElementById("buscador")
