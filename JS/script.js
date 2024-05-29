@@ -1,6 +1,10 @@
+// Dirección de la API
 const API = 'https://avwx.rest/api/metar/';
 
-async function traerMetar(funcion) {
+// Función para traer la información de la api
+//    Lee el input del buscador 
+//    Completa la petición usando la dirección en línea 2 y el input
+async function traerMetar(fuction) {
     let icaoInput = document.getElementById("buscador")
     let icaoCode = icaoInput.value;
 
@@ -12,9 +16,50 @@ async function traerMetar(funcion) {
         }
     })
     await response.json()
-        .then(data => { funcion(data); console.log(data); });
+        .then(data => { fuction(data); console.log(data) });
 }
 
+/////////////////////////////////////// En Progreso /////////////////////////////////////// En Progreso /////////////////////////////////////// En Progreso ///////////////////////////////////////
+
+// Crea el array con los datos con los datos filtrados
+//    Separa los datos traidos de la API
+//    Guarda los datos separados en un array nuevo
+function saveArray(response) {
+    let properties = Object.getOwnPropertyNames(response);  //Posiblemente prescindible
+    // console.log(properties);  //Posiblemente prescindible
+    const arraysInternos = ["clouds", "other", "remarks_info", "runway_visibility", "wind_variable_direction", "wx_codes"]
+    let arrayRepr = [];
+    for (const prop in response) {
+        if (response[prop]) {
+            arrayRepr.push(response[prop].repr);
+        }
+    }
+    for (const prop in response) {
+        if (Array.isArray(response[prop])) {
+            response[prop].forEach(elemento => {
+                arrayRepr.push(elemento.repr);
+            })
+        }
+    }
+
+    arrayRepr.push(response.remarks)
+
+    let arrayFiltrado = arrayRepr.filter(Boolean)  // Quita los undefined
+    return console.log(arrayFiltrado),
+        console.log(arrayRepr);
+
+}
+
+/* 
+Errores:
+*/
+
+/////////////////////////////////////// En Progreso /////////////////////////////////////// En Progreso /////////////////////////////////////// En Progreso ///////////////////////////////////////
+
+// Función que imprime los botones en el HTML
+//    Utiliza el contenedor con ID contenedor para colocar los botones ahí
+//    Utiliza Bootstrap para darle formato y ponerles un modal
+//    El modal se utiliza para mostrar las explicaciones
 function mostrarMetar(info) {
     const contenedor = document.getElementById("container")
     let icaoInput = document.getElementById("buscador")
@@ -355,6 +400,12 @@ function mostrarMetar(info) {
     contenedor.innerHTML += outro
 }
 
+// DOM Content Loaded
+//    Define todos los botones
+//    Escucha todos los botones
+//    El botón genérico toma lo que haya escrito en el buscador y trae el metar
+//    Los botones preseteados le dan el value al input de texto y traen el metar
+//    Al final hay un evento para que acepte que el buscador se active pulsando enter
 document.addEventListener("DOMContentLoaded", () => {
     let botonRaw = document.getElementById("botonRaw")
     let botonCyow = document.getElementById("botonCyow")
@@ -363,30 +414,32 @@ document.addEventListener("DOMContentLoaded", () => {
     let botonKjfk = document.getElementById("botonKjfk")
     let botonOejn = document.getElementById("botonOejn")
 
-    botonCyow.addEventListener("click", () => {
-        document.getElementById("buscador").value = "CYOW"
-        traerMetar(mostrarMetar)
-    })
     botonSumu.addEventListener("click", () => {
         document.getElementById("buscador").value = "SUMU"
-        traerMetar(mostrarMetar)
+        traerMetar(saveArray)
     })
+
+    botonCyow.addEventListener("click", () => {
+        document.getElementById("buscador").value = "CYOW"
+        traerMetar(saveArray)
+    })
+
     botonOoms.addEventListener("click", () => {
         document.getElementById("buscador").value = "OOMS"
-        traerMetar(mostrarMetar)
+        traerMetar(saveArray)
     })
     botonKjfk.addEventListener("click", () => {
         document.getElementById("buscador").value = "KJFK"
-        traerMetar(mostrarMetar)
+        traerMetar(saveArray)
     })
 
     botonOejn.addEventListener("click", () => {
         document.getElementById("buscador").value = "OEJN"
-        traerMetar(mostrarMetar)
+        traerMetar(saveArray)
     })
 
     botonRaw.addEventListener("click", () => {
-        traerMetar(mostrarMetar)
+        traerMetar(saveArray)
     })
 
     var input = document.getElementById("buscador");
