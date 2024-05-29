@@ -30,16 +30,16 @@ function saveArray(response) {
     const arraysInternos = ["clouds", "other", "remarks_info", "runway_visibility", "wind_variable_direction", "wx_codes"]
     let arrayRepr = [];
     for (const prop in response) {
-        if (response[prop]) {
-            arrayRepr.push(response[prop].repr);
-        }
-    }
-    for (const prop in response) {
         if (Array.isArray(response[prop])) {
             response[prop].forEach(elemento => {
                 arrayRepr.push(elemento.repr);
             })
+        } else if (response[prop]) {
+            arrayRepr.push(response[prop].repr);
         }
+    }
+    for (const prop in response) {
+
     }
 
     arrayRepr.push(response.remarks)
