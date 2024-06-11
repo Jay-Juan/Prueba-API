@@ -7,6 +7,13 @@ The idea of Project Metar Search is for people passionate about aviation to have
 
 ![Metar sample image](./IMG/Readme%20Metar.jpg)
 
+If you want to see what I've done so far, you can click [here](https://jay-juan.github.io/Metar-search/)
+To see the METAR you will have to:
+
+  - Click a button or use the searchbar
+  - Reload the site
+  - Click any button
+
 ## A Work in Progress
 
 As a work in progress, I'm aware I still have a lot to do. 
